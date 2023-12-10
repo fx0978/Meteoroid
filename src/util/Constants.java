@@ -18,7 +18,7 @@ public class Constants {
     // Bullet
     public static int bulletSize = 32;
     public static int bulletCenterToShip = (spaceShipSize-bulletSize)/2;
-    public static int bulletFrequency = 100;
+    public static int bulletFrequency = 500;
 
     // Meteoroid
     public static int meteoroidSmallSize = 50;
