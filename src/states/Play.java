@@ -41,7 +41,7 @@ public class Play extends State {
                 (int) (util.Constants.panelWidth), util.Constants.pointsLabelHeight);
         pointsLabel.setVisible(false);
         pointsLabel.setForeground(Color.WHITE);
-        pointsLabel.setFont(new Font("Arial", Font.PLAIN, 30));
+        pointsLabel.setFont(util.Constants.defaultFont);
         game.getGamePanel().add(pointsLabel);
     }
 
@@ -188,7 +188,7 @@ public class Play extends State {
         game.getMusicPlayer().playMusic("Start.mid");
         game.getMusicPlayer().playMusicLoop("Playing.mid");
     }
-
+    
     @Override
     public void mouseClicked(MouseEvent e) {
     }

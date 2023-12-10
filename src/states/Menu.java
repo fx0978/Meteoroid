@@ -77,7 +77,8 @@ public class Menu extends State{
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.WHITE);
-        g.drawString("MENU", util.Constants.panelWidth/2, util.Constants.panelHeight/2);
+        g.setFont(util.Constants.defaultFont);
+        g.drawString("MENU", util.Constants.panelWidth/2 - 15, util.Constants.panelHeight/2);
         g.drawImage(titleImg, (int)(util.Constants.panelWidth*.20), 0,(int) (util.Constants.panelWidth*.67), 200, null);
     }
 

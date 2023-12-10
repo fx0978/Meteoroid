@@ -59,4 +59,6 @@ https://www.piskelapp.com/p/create/sprite
 
 Modified code from Head First Java Third Edition ch.15 BeatBox.java was used to help in generating the music files. You can find the whole book code available at: https://resources.oreilly.com/examples/0636920034452
 
+defaultFontStyle was grabbed from: https://www.dafont.com/pixel-operator.font
+
 Chat GPT was used as a helper to develop this game but most of the logic and implementation was done by Feng Xiong in tandem with the above stated guide.

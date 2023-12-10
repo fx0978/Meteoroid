@@ -1,6 +1,7 @@
 package util;
 
 import java.awt.Color;
+import java.awt.Font;
 
 public class Constants {
     
@@ -32,5 +33,8 @@ public class Constants {
     public static int buttonHeight = 50;
     public static Color buttonBackground = Color.BLACK;
     public static Color buttonText = Color.WHITE;
+
+    //Font
+    public static Font defaultFont = util.Tools.getFont("src/resources/defaultFontStyle.ttf").deriveFont(30f);
 
 }
