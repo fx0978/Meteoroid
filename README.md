@@ -48,7 +48,7 @@ To add music you can run BeatBox.java. From which you can select a various instr
 Then in your code trigger the music play back by using the MusicPlayer class object's method .PlayMusic(song) or .PlayMusicLoop(song) where song is the full name (including extension) of the file you created above in the BeatBox.
 
 ## GitHub Repository
-You can find the repository for this code at: 
+You can find the repository for this code at: https://github.com/fx0978/Meteoroid
 
 ## Sources
 This implementation followed the following guide on YouTube by the channel "Kaarin Gaming" to help construct the underlying game loop logic:
