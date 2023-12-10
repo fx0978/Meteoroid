@@ -1,8 +1,6 @@
 package main;
 
 import java.awt.Graphics;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
 
 import javax.swing.JFrame;
 
@@ -39,31 +37,6 @@ public class StartGame implements Runnable {
         gameFrame.setLocationRelativeTo(null);
         gameFrame.setResizable(false);
         gameFrame.setVisible(true);
-        gameFrame.addWindowFocusListener(new WindowFocusListener() {
-            public void windowGainedFocus(WindowEvent e) {
-                switch (GameState.state) {
-                    case MENU:
-                    case GAMEOVER:
-                    case PLAY:
-                        break;
-                    case PAUSED:
-                        paused.unPauseGame();
-                        break;
-                }                
-            }
-
-            public void windowLostFocus(WindowEvent e) {
-                switch (GameState.state) {
-                    case MENU:
-                    case GAMEOVER:
-                    case PAUSED:
-                        break;
-                    case PLAY:                        
-                        paused.showPaused();
-                        break;
-                }
-            }
-        });
     }
 
     /**
