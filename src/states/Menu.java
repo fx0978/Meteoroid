@@ -39,6 +39,7 @@ public class Menu extends State{
         util.Constants.buttonWidth, util.Constants.buttonHeight);
         startButton.setBackground(Color.BLACK);
         startButton.setForeground(Color.WHITE);
+        startButton.setOpaque(true);
         startButton.setFocusable(false);
         game.getGamePanel().add(startButton);
 
@@ -64,6 +65,7 @@ public class Menu extends State{
         util.Constants.buttonWidth, util.Constants.buttonHeight);
         quitButton.setBackground(util.Constants.buttonBackground);
         quitButton.setForeground(util.Constants.buttonText);
+        startButton.setOpaque(true);
         quitButton.setFocusable(false);
         game.getGamePanel().add(quitButton);
     }

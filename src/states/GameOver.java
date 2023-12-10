@@ -47,6 +47,7 @@ public class GameOver extends State{
         util.Constants.buttonWidth, util.Constants.buttonHeight);
         restartButton.setBackground(util.Constants.buttonBackground);
         restartButton.setForeground(util.Constants.buttonText);
+        restartButton.setOpaque(true);
         restartButton.setFocusable(false);
         game.getGamePanel().add(restartButton);
 
@@ -66,6 +67,7 @@ public class GameOver extends State{
         util.Constants.buttonWidth, util.Constants.buttonHeight);
         returnButton.setBackground(util.Constants.buttonBackground);
         returnButton.setForeground(util.Constants.buttonText);
+        returnButton.setOpaque(true);
         returnButton.setFocusable(false);
         game.getGamePanel().add(returnButton);
     }

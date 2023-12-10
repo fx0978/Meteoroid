@@ -32,6 +32,7 @@ public class Paused extends State{
         util.Constants.buttonWidth, util.Constants.buttonHeight);
         resumebutton.setBackground(Color.BLACK);
         resumebutton.setForeground(Color.WHITE);
+        resumebutton.setOpaque(true);
         resumebutton.setFocusable(false);
         resumebutton.setVisible(false);
         game.getGamePanel().add(resumebutton);
