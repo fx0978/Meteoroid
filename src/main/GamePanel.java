@@ -21,8 +21,6 @@ public class GamePanel extends JPanel {
 
         inputs = new Inputs(this);
         this.addKeyListener(this.inputs);
-        this.addMouseListener(this.inputs);
-        this.addMouseMotionListener(this.inputs);
 
         setFocusable(true);
         requestFocus();

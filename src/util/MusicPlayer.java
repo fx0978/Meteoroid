@@ -10,10 +10,15 @@ import javax.sound.midi.Sequencer;
 public class MusicPlayer {
     private static Sequencer musicSequencer;
     private static Sequencer effectSequencer;
+    private static Sequencer startSequencer;
     private static Sequence sequence;
 
     static {
         try {
+            startSequencer = MidiSystem.getSequencer();
+            startSequencer.open();
+            startSequencer.setTempoInBPM(120);
+
             musicSequencer = MidiSystem.getSequencer();
             musicSequencer.open();
             sequence = new Sequence(Sequence.PPQ, 4);
@@ -21,7 +26,7 @@ public class MusicPlayer {
 
             effectSequencer = MidiSystem.getSequencer();
             effectSequencer.open();
-            effectSequencer.setTempoInBPM(120);
+            effectSequencer.setTempoInBPM(120);            
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,19 +53,20 @@ public class MusicPlayer {
     // TODO: Combine the below play music methods into one and add an additional
     // parameter?
     /**
-     * Plays the music once given the file name
+     * Plays the music once given the file name. This is used only for the start whistle (at beginning of start).
      * 
      * @param name
      */
-    public static void playMusic(String name) {
+    public static void playStartWhistle(String name) {
+        startSequencer.stop();
 
         Thread thread = new Thread(() -> {
             try {
                 sequence = getMusic(name);
-                musicSequencer.setSequence(sequence);
-                musicSequencer.setLoopCount(0);
-                musicSequencer.setTempoInBPM(120);
-                musicSequencer.start();
+                startSequencer.setSequence(sequence);
+                startSequencer.setLoopCount(0);
+                startSequencer.setTempoInBPM(120);
+                startSequencer.start();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -94,6 +100,7 @@ public class MusicPlayer {
      * @param name
      */
     public static void playMusicLoop(String name) {
+        musicSequencer.stop();
 
         Thread thread = new Thread(() -> {
             try {
@@ -101,32 +108,6 @@ public class MusicPlayer {
                 musicSequencer.setSequence(sequence);
                 musicSequencer.setLoopCount(Sequencer.LOOP_CONTINUOUSLY);
                 musicSequencer.setTempoInBPM(120);
-                musicSequencer.start();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-        thread.start();
-    }
-
-    /**
-     * Plays holiday songs, on end show the victory screen
-     */
-    public static void playSecret() {
-
-        Thread thread = new Thread(() -> {
-            try {
-                sequence = getMusic("06twelv&.mid");
-                musicSequencer.setSequence(sequence);
-                musicSequencer.setLoopCount(0);
-                musicSequencer.setTempoInBPM(120);
-
-                musicSequencer.addMetaEventListener(meta -> {
-                    if (meta.getType() == 0x2F) { // End of Track meta event (Chat GPT helped here)
-                        System.out.println("End of Game!");
-                    }
-                });
-
                 musicSequencer.start();
             } catch (Exception e) {
                 e.printStackTrace();

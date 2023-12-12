@@ -5,13 +5,11 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 
 import main.StartGame;
 
-// TODO: remove the unused mouse listener methods if we don't use
 public class Paused extends State{
 
     private JButton resumebutton = new JButton("RESUME");
@@ -67,22 +65,6 @@ public class Paused extends State{
     public void unPauseGame() {
         resumebutton.setVisible(false);
         GameState.setGameStatePlay();
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
     }
 
     @Override

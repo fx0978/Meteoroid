@@ -28,10 +28,6 @@ public abstract class State {
     // Abstract methods to be implemented by subclasses
     public abstract void update();
     public abstract void draw(Graphics g);
-    public abstract void mouseClicked(MouseEvent e);
-    public abstract void mousePressed(MouseEvent e);
-    public abstract void mouseReleased(MouseEvent e);
-    public abstract void mouseMoved(MouseEvent e);
     public abstract void keyPressed(KeyEvent e);
     public abstract void keyReleased(KeyEvent e);
 }

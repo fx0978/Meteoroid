@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 import states.GameOver;
 import states.GameState;
-import states.Instructions;
+import states.Controls;
 import states.Play;
 import util.MusicPlayer;
 import states.Menu;
@@ -24,7 +24,7 @@ public class StartGame implements Runnable {
     private Play play;
     private GameOver gameover;
     private Paused paused;
-    private Instructions instructions;
+    private Controls instructions;
     
     // Initializes the game and starts the loop
     public StartGame() {
@@ -66,7 +66,7 @@ public class StartGame implements Runnable {
         play = new Play(this);
         gameover = new GameOver(this);
         paused = new Paused(this);
-        instructions = new Instructions(this);
+        instructions = new Controls(this);
         MusicPlayer.playMusicLoop("Title.mid");
     }
 
@@ -205,7 +205,7 @@ public class StartGame implements Runnable {
     /**
      * @return instructions
      */
-    public Instructions geInstructions() {
+    public Controls geInstructions() {
         return instructions;
     }
 

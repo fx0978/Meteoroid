@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
@@ -13,7 +12,6 @@ import javax.swing.JLabel;
 import main.StartGame;
 import util.MusicPlayer;
 
-// TODO: remove the unused mouse listener methods if we don't use
 public class GameOver extends State{
 
     private BufferedImage gameoverImg;
@@ -107,22 +105,6 @@ public class GameOver extends State{
     @Override
     public void draw(Graphics g) {
         g.drawImage(gameoverImg, (int)(util.Constants.PANEL_WIDTH*.20), animationY,(int) (util.Constants.PANEL_WIDTH*.67), (int) (.4*util.Constants.PANEL_HEIGHT), null);
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
     }
 
     @Override

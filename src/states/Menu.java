@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
@@ -14,7 +13,6 @@ import javax.swing.JOptionPane;
 import main.StartGame;
 import util.MusicPlayer;
 
-// TODO: remove the unused mouse listener methods if we don't use
 public class Menu extends State{
 
     private BufferedImage titleImg;
@@ -119,22 +117,6 @@ public class Menu extends State{
         }
 
         GameState.setGameStateMenu();
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
     }
 
     @Override

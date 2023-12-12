@@ -1,10 +1,8 @@
 package states;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -16,7 +14,6 @@ import characters.SpaceShip;
 import main.StartGame;
 import util.MusicPlayer;
 
-// TODO: remove the unused mouse listener methods if we don't use
 public class Play extends State {
 
     protected SpaceShip spaceShip;
@@ -27,7 +24,6 @@ public class Play extends State {
     protected JLabel pointsLabel = new JLabel("Points: 0");
     private float meteoriodsSpeed = util.Constants.METEOROID_DEFAULT_SPEED;
     private int meteoroidFrequency = util.Constants.METEOROID_DEFAULT_FREQUENCY;
-    private boolean playedSecret = false;
 
     public Play(StartGame game) {
         super(game);
@@ -140,12 +136,6 @@ public class Play extends State {
             lastTrackedPoints = points;
         }
 
-        if (!playedSecret & points >= 100) {
-            MusicPlayer.stop();
-            MusicPlayer.playSecret();
-            playedSecret = true;
-        }
-
         // Update each meteoroid
         meteoroids.forEach(m -> m.update());
 
@@ -218,24 +208,8 @@ public class Play extends State {
 
         // Restart music
         MusicPlayer.stop();
-        MusicPlayer.playMusic("Start.mid");
+        MusicPlayer.playStartWhistle("Start.mid");
         MusicPlayer.playMusicLoop("Playing.mid");
-    }
-    
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
     }
 
     /**

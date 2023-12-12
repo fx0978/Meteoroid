@@ -2,15 +2,12 @@ package inputs;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 import main.GamePanel;
 import states.GameState;
 
 //TODO: Remove the mouse listeners if we don't end up using these
-public class Inputs implements KeyListener, MouseListener, MouseMotionListener {
+public class Inputs implements KeyListener {
 
     private GamePanel gamePanel;
 
@@ -69,39 +66,6 @@ public class Inputs implements KeyListener, MouseListener, MouseMotionListener {
             default:
                 break;
         }
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        
     }
     
 }

@@ -5,16 +5,15 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 
 import main.StartGame;
 
-public class Instructions extends State {
+public class Controls extends State {
     private JButton backButton = new JButton("Back");
 
-    public Instructions(StartGame game) {
+    public Controls(StartGame game) {
         super(game);
         
         // Back Button
@@ -41,11 +40,14 @@ public class Instructions extends State {
 
     }
 
+    /**
+     * Draws the strings for controls
+     */
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.WHITE);
         g.setFont(util.Constants.MEDIUM_SIZE_FONT);
-        g.drawString("INSTRUCTIONS", (util.Constants.PANEL_WIDTH/2) - 58, (util.Constants.PANEL_HEIGHT/2) - 100);
+        g.drawString("CONTROLS", (util.Constants.PANEL_WIDTH/2) - 58, (util.Constants.PANEL_HEIGHT/2) - 100);
 
         g.setFont(util.Constants.SMALL_SIZE_FONT);
         g.drawString("W - Up", (util.Constants.PANEL_WIDTH/2) - 56, (util.Constants.PANEL_HEIGHT/2) - 75);
@@ -58,22 +60,6 @@ public class Instructions extends State {
 
     public void showInstructions() {
         backButton.setVisible(true);
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
     }
 
     @Override
