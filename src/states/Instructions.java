@@ -22,7 +22,6 @@ public class Instructions extends State {
             @Override
             public void actionPerformed(ActionEvent e) {
                 backButton.setVisible(false);
-                GameState.setGameStateMenu();
                 game.getMenu().showMenu();                
             }
         });
@@ -45,9 +44,16 @@ public class Instructions extends State {
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.WHITE);
-        g.setFont(util.Constants.defaultFont);
+        g.setFont(util.Constants.MEDIUM_SIZE_FONT);
         g.drawString("INSTRUCTIONS", (util.Constants.PANEL_WIDTH/2) - 58, (util.Constants.PANEL_HEIGHT/2) - 100);
-        // TODO: Add instructions button scheme text
+
+        g.setFont(util.Constants.SMALL_SIZE_FONT);
+        g.drawString("W - Up", (util.Constants.PANEL_WIDTH/2) - 56, (util.Constants.PANEL_HEIGHT/2) - 75);
+        g.drawString("A - Left", (util.Constants.PANEL_WIDTH/2) - 56, (util.Constants.PANEL_HEIGHT/2) - 50);
+        g.drawString("S - Down", (util.Constants.PANEL_WIDTH/2) - 56, (util.Constants.PANEL_HEIGHT/2) - 25);
+        g.drawString("D - Right", (util.Constants.PANEL_WIDTH/2) - 56, (util.Constants.PANEL_HEIGHT/2));
+        g.drawString("SPACEBAR - Shoot", (util.Constants.PANEL_WIDTH/2) - 56, (util.Constants.PANEL_HEIGHT/2) + 25);
+        g.drawString("P - Pause (while started game)", (util.Constants.PANEL_WIDTH/2) - 56, (util.Constants.PANEL_HEIGHT/2) + 50);
     }
 
     public void showInstructions() {

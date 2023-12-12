@@ -19,7 +19,6 @@ public class StartGame implements Runnable {
     private Thread gameThread;
     private final int FPS_SET = 120;
     private final int UPS_SET = 200;
-    private MusicPlayer musicPlayer;
 
     private Menu menu;
     private Play play;
@@ -68,8 +67,7 @@ public class StartGame implements Runnable {
         gameover = new GameOver(this);
         paused = new Paused(this);
         instructions = new Instructions(this);
-        musicPlayer = new MusicPlayer();
-        musicPlayer.playMusicLoop("Title.mid");
+        MusicPlayer.playMusicLoop("Title.mid");
     }
 
     /**
@@ -209,13 +207,6 @@ public class StartGame implements Runnable {
      */
     public Instructions geInstructions() {
         return instructions;
-    }
-
-    /**
-     * @return musicPlayer
-     */
-    public MusicPlayer getMusicPlayer() {
-        return musicPlayer;
     }
 
 }

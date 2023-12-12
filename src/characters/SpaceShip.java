@@ -9,6 +9,7 @@ public class SpaceShip extends Entity {
     private float playerSpeed = 2.0f;
     private long currentTime = System.currentTimeMillis();
     private long previousTime = currentTime;
+    private int bulletFrequency = util.Constants.BULLET_DEFAULT_FREQUENCY;
 
     private List<Bullet> bullets = new ArrayList<>();
 
@@ -54,7 +55,7 @@ public class SpaceShip extends Entity {
 
         // Check if new bullet needs to be created
         currentTime = System.currentTimeMillis();
-        if (this.attack && ((currentTime - previousTime) >= util.Constants.BULLET_FREQUENCY)) {
+        if (this.attack && ((currentTime - previousTime) >= bulletFrequency)) {
             bullets.add(new Bullet(this.x, this.y, util.Constants.BULLET_SIZE, util.Constants.BULLET_SIZE));
             previousTime = currentTime;
         }
@@ -159,11 +160,26 @@ public class SpaceShip extends Entity {
     }
 
     /**
+     * Changes the bullets produced to be faster
+     */
+    public void upgradeBulletFrequency() {
+        bulletFrequency/=2;
+    }
+
+    /**
+     * Reverts bullets produced to be default
+     */
+    public void resetBulletFrequency() {
+        bulletFrequency = util.Constants.BULLET_DEFAULT_FREQUENCY;
+    }
+
+    /**
      * Stops the ship and resets the spaceship/bullets
      */
     public void resetShip() {
         stopShip();
         bullets.removeIf(bullet -> true);
+        resetBulletFrequency();
         this.x = util.Constants.SPACESHIP_SPAWN_X;
         this.y = util.Constants.SPACESHIP_SPAWN_Y;
     }

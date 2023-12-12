@@ -19,11 +19,15 @@ public class Constants {
     // Bullet
     public static final int BULLET_SIZE = 32;
     public static final int BULLET_CENTER_TO_SHIP = (SPACESHIP_SIZE-BULLET_SIZE)/2;
-    public static final int BULLET_FREQUENCY = 500;
+    public static final int BULLET_DEFAULT_FREQUENCY = 200;
 
     // Meteoroid
     public static final int METEOROID_SMALL_SIZE = 50;
     public static final int METEOROID_MEDIUM_SIZE = 200;
+    public static final float METEOROID_DEFAULT_SPEED = 0.2f;
+    public static final float METEOROID_MAX_SPEED = 1.6f;
+    public static final int METEOROID_DEFAULT_FREQUENCY = 4000; // per miliseconds generate
+    public static final int METEOROID_MIN_FREQUENCY = 2000;
 
     // Labels
     public static final int POINTS_LABEL_HEIGHT = 50;
@@ -35,6 +39,10 @@ public class Constants {
     public static final Color BUTTON_TEXT = Color.WHITE;
 
     // Font
-    public static final Font defaultFont = util.Tools.getFont("src/resources/defaultFontStyle.ttf").deriveFont(30f);
+    public static final Font MEDIUM_SIZE_FONT = util.Tools.getFont("src/resources/defaultFontStyle.ttf").deriveFont(30f);
+    public static final Font SMALL_SIZE_FONT = util.Tools.getFont("src/resources/defaultFontStyle.ttf").deriveFont(20f);
+
+    // Miscellaneous
+    public static final int POINTS_THRESHOLD = 25; // increase speed/frequency at this interval
 
 }

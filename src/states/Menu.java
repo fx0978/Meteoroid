@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import main.StartGame;
+import util.MusicPlayer;
 
 // TODO: remove the unused mouse listener methods if we don't use
 public class Menu extends State{
@@ -101,7 +102,7 @@ public class Menu extends State{
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.WHITE);
-        g.setFont(util.Constants.defaultFont);
+        g.setFont(util.Constants.MEDIUM_SIZE_FONT);
         g.drawString("MENU", util.Constants.PANEL_WIDTH/2 - 15, util.Constants.PANEL_HEIGHT/2);
         g.drawImage(titleImg, (int)(util.Constants.PANEL_WIDTH*.20), 0,(int) (util.Constants.PANEL_WIDTH*.67), 200, null);
     }
@@ -111,9 +112,13 @@ public class Menu extends State{
         controlsButton.setVisible(true);
         quitButton.setVisible(true);
 
+        // Reset the game music only when going from GAMEOVER -> MENU
+        if (GameState.getGameState() == GameState.GAMEOVER) {
+            MusicPlayer.stop();
+            MusicPlayer.playMusicLoop("Title.mid");
+        }
+
         GameState.setGameStateMenu();
-        game.getMusicPlayer().stop();
-        game.getMusicPlayer().playMusicLoop("Title.mid");
     }
 
     @Override

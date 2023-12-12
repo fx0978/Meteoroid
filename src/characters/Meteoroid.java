@@ -3,10 +3,10 @@ package characters;
 import java.awt.Graphics;
 
 public class Meteoroid extends Entity {
-    private float meteoriodSpeed = 0.2f;
+    private float meteoriodSpeed;
     private int size;
 
-    public Meteoroid(float x, float y, float width, float height) {
+    public Meteoroid(float x, float y, float width, float height, float speed) {
         super(x, y, width, height);
 
         if (width > util.Constants.METEOROID_SMALL_SIZE + 100) {
@@ -16,6 +16,8 @@ public class Meteoroid extends Entity {
             img = util.Tools.importImg("small_meteoroid.png");
             size = 0;
         }
+
+        meteoriodSpeed = speed;
         
     }
 
@@ -48,6 +50,10 @@ public class Meteoroid extends Entity {
      */
     public int getSize() {
         return size;
+    }
+
+    public void increaseExistingMeteoroidSpeed() {
+        meteoriodSpeed*=2;
     }
     
 }

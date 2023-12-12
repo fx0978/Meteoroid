@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import main.StartGame;
+import util.MusicPlayer;
 
 // TODO: remove the unused mouse listener methods if we don't use
 public class GameOver extends State{
@@ -96,8 +97,8 @@ public class GameOver extends State{
         restartButton.setVisible(GameState.getGameState() == GameState.GAMEOVER);
         returnButton.setVisible(GameState.getGameState() == GameState.GAMEOVER);
 
-        game.getMusicPlayer().stop();
-        game.getMusicPlayer().playMusicLoop("GameOver.mid");
+        MusicPlayer.stop();
+        MusicPlayer.playMusicLoop("GameOver.mid");
     }
 
     /**

@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import characters.Meteoroid;
 import characters.SpaceShip;
 import main.StartGame;
+import util.MusicPlayer;
 
 // TODO: remove the unused mouse listener methods if we don't use
 public class Play extends State {
@@ -22,7 +23,11 @@ public class Play extends State {
     private List<Meteoroid> meteoroids = new CopyOnWriteArrayList<>();
     private long lastCheck = System.currentTimeMillis();
     private int points = 0;
+    private int lastTrackedPoints = points;
     protected JLabel pointsLabel = new JLabel("Points: 0");
+    private float meteoriodsSpeed = util.Constants.METEOROID_DEFAULT_SPEED;
+    private int meteoroidFrequency = util.Constants.METEOROID_DEFAULT_FREQUENCY;
+    private boolean playedSecret = false;
 
     public Play(StartGame game) {
         super(game);
@@ -41,7 +46,7 @@ public class Play extends State {
                 (int) (util.Constants.PANEL_WIDTH), util.Constants.POINTS_LABEL_HEIGHT);
         pointsLabel.setVisible(false);
         pointsLabel.setForeground(Color.WHITE);
-        pointsLabel.setFont(util.Constants.defaultFont);
+        pointsLabel.setFont(util.Constants.MEDIUM_SIZE_FONT);
         game.getGamePanel().add(pointsLabel);
     }
 
@@ -94,7 +99,7 @@ public class Play extends State {
             return null;
         }
 
-        return new Meteoroid(x, y, size, size);
+        return new Meteoroid(x, y, size, size, meteoriodsSpeed);
 
     }
 
@@ -118,9 +123,34 @@ public class Play extends State {
     @Override
     public void update() {
         spaceShip.update();
+
+        // Increase speed/frequency if matched
+        if (points - lastTrackedPoints > util.Constants.POINTS_THRESHOLD) {
+            if (meteoriodsSpeed < util.Constants.METEOROID_MAX_SPEED) {
+                meteoriodsSpeed *= 2;
+                meteoroids.forEach(m -> m.increaseExistingMeteoroidSpeed());
+            }
+
+            if (meteoriodsSpeed > 1 && meteoriodsSpeed <= util.Constants.METEOROID_MAX_SPEED && meteoroidFrequency > util.Constants.METEOROID_MIN_FREQUENCY) {
+                meteoroidFrequency/=2;
+
+                getSpaceShip().upgradeBulletFrequency();
+            }
+
+            lastTrackedPoints = points;
+        }
+
+        if (!playedSecret & points >= 100) {
+            MusicPlayer.stop();
+            MusicPlayer.playSecret();
+            playedSecret = true;
+        }
+
+        // Update each meteoroid
         meteoroids.forEach(m -> m.update());
 
-        if (System.currentTimeMillis() - lastCheck >= 4000) {
+        // Create more meteoroids
+        if (System.currentTimeMillis() - lastCheck >= meteoroidFrequency) {
             lastCheck = System.currentTimeMillis();
             createMeteoroids();
         }
@@ -142,6 +172,7 @@ public class Play extends State {
                 game.getGameOver().showGameOver();
                 break;
             }
+            
             m.render(g);
         }
     }
@@ -154,7 +185,6 @@ public class Play extends State {
     private void statusCheck(List<Meteoroid> meteoroids) {
         meteoroids.removeIf(meteoroid -> meteoroid.getY() > util.Constants.PANEL_HEIGHT);
 
-        // Chat GPT recommended loop for modifying object when iterating through it
         for (Meteoroid m : meteoroids) {
             if (spaceShip.getBullets().removeIf(bullet -> bullet.getHitBox().intersects(m.getHitBox()))) {
                 if (m.getSize() == 0) {
@@ -164,7 +194,7 @@ public class Play extends State {
                 }
         
                 pointsLabel.setText("Points: " + points);
-                meteoroids.remove(m); // Directly remove the element from the CopyOnWriteArrayList
+                meteoroids.remove(m);
             }
         }
     }
@@ -178,15 +208,18 @@ public class Play extends State {
         pointsLabel.setBounds(10, (int) (util.Constants.PANEL_HEIGHT - util.Constants.POINTS_LABEL_HEIGHT),
                 (int) (util.Constants.PANEL_WIDTH), util.Constants.POINTS_LABEL_HEIGHT);
         points = 0;
+        lastTrackedPoints = 0;
+        meteoriodsSpeed = util.Constants.METEOROID_DEFAULT_SPEED;
+        meteoroidFrequency = util.Constants.METEOROID_DEFAULT_FREQUENCY;
         pointsLabel.setText("Points: 0");
         meteoroids.removeIf(m -> true);
         spaceShip.resetShip();
         GameState.setGameStatePlay();
 
         // Restart music
-        game.getMusicPlayer().stop();
-        game.getMusicPlayer().playMusic("Start.mid");
-        game.getMusicPlayer().playMusicLoop("Playing.mid");
+        MusicPlayer.stop();
+        MusicPlayer.playMusic("Start.mid");
+        MusicPlayer.playMusicLoop("Playing.mid");
     }
     
     @Override

@@ -3,6 +3,8 @@ package characters;
 import java.awt.Graphics;
 import java.awt.Rectangle; // For debugging
 
+import util.MusicPlayer;
+
 public class Bullet extends Entity {
     private float bulletSpeed = 5.0f;
 
@@ -10,6 +12,7 @@ public class Bullet extends Entity {
         super(x, y, width, height);
 
         img = util.Tools.importImg("bullet.png");
+        MusicPlayer.playEffect("Bullet.mid");
     }
 
     /**

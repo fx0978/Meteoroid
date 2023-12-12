@@ -20,8 +20,8 @@ public abstract class Entity {
 
     // Debugging hit box
     protected void drawHitBox(Graphics g) {
-        g.setColor(Color.PINK);
-        g.drawRect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
+        // g.setColor(Color.PINK);
+        // g.drawRect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
     }
 
     /**
