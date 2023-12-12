@@ -205,7 +205,7 @@ public class StartGame implements Runnable {
     /**
      * @return instructions
      */
-    public Controls geInstructions() {
+    public Controls getControls() {
         return instructions;
     }
 

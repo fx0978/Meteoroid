@@ -52,7 +52,7 @@ public class Menu extends State{
                 controlsButton.setVisible(false);
                 quitButton.setVisible(false);
                 GameState.setGameStateInstruction();
-                game.geInstructions().showInstructions();
+                game.getControls().showInstructions();
             }
         });
         controlsButton.setBounds((util.Constants.PANEL_WIDTH/2) - 35, 
@@ -121,9 +121,6 @@ public class Menu extends State{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_P) {
-            GameState.setGameStatePaused();
-        }
     }
 
     @Override

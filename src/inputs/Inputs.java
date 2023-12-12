@@ -37,7 +37,7 @@ public class Inputs implements KeyListener {
                 gamePanel.getGame().getGameOver().keyPressed(e);
                 break;
             case INSTRUCTIONS:
-                gamePanel.getGame().geInstructions().keyPressed(e);
+                gamePanel.getGame().getControls().keyPressed(e);
             default:
                 break;
         }
@@ -62,7 +62,7 @@ public class Inputs implements KeyListener {
             case PAUSED:
                 gamePanel.getGame().getPaused().keyReleased(e);
             case INSTRUCTIONS:
-                gamePanel.getGame().geInstructions().keyReleased(e);
+                gamePanel.getGame().getControls().keyReleased(e);
             default:
                 break;
         }
