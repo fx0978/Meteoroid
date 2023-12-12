@@ -18,6 +18,7 @@ public class Menu extends State{
 
     private BufferedImage titleImg;
     private JButton startButton = new JButton("START");
+    private JButton controlsButton = new JButton("CONTROLS");
     private JButton quitButton = new JButton("QUIT");
 
     public Menu(StartGame game) {
@@ -31,17 +32,38 @@ public class Menu extends State{
             public void actionPerformed(ActionEvent e) {
                 game.getPlay().restart();
                 startButton.setVisible(false);
+                controlsButton.setVisible(false);
                 quitButton.setVisible(false);                
             }
         });
-        startButton.setBounds((util.Constants.panelWidth/2) - 35, 
-        (util.Constants.panelHeight/2) + 10, 
-        util.Constants.buttonWidth, util.Constants.buttonHeight);
+        startButton.setBounds((util.Constants.PANEL_WIDTH/2) - 35, 
+        (util.Constants.PANEL_HEIGHT/2) + 10, 
+        util.Constants.BUTTON_WIDTH, util.Constants.BUTTON_HEIGHT);
         startButton.setBackground(Color.BLACK);
         startButton.setForeground(Color.WHITE);
         startButton.setOpaque(true);
         startButton.setFocusable(false);
         game.getGamePanel().add(startButton);
+
+        // Instructions Button
+        controlsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startButton.setVisible(false);
+                controlsButton.setVisible(false);
+                quitButton.setVisible(false);
+                GameState.setGameStateInstruction();
+                game.geInstructions().showInstructions();
+            }
+        });
+        controlsButton.setBounds((util.Constants.PANEL_WIDTH/2) - 35, 
+        (util.Constants.PANEL_HEIGHT/2) + util.Constants.BUTTON_HEIGHT + 25, 
+        util.Constants.BUTTON_WIDTH, util.Constants.BUTTON_HEIGHT);
+        controlsButton.setBackground(util.Constants.BUTTON_BACKGROUND);
+        controlsButton.setForeground(util.Constants.BUTTON_TEXT);
+        controlsButton.setOpaque(true);
+        controlsButton.setFocusable(false);
+        game.getGamePanel().add(controlsButton);
 
         // Exit Button
         quitButton.addActionListener(new ActionListener() {
@@ -60,14 +82,16 @@ public class Menu extends State{
                 }
             }
         });
-        quitButton.setBounds((util.Constants.panelWidth/2) - 35, 
-        (util.Constants.panelHeight/2) + (int) startButton.getAlignmentY() + 75, 
-        util.Constants.buttonWidth, util.Constants.buttonHeight);
-        quitButton.setBackground(util.Constants.buttonBackground);
-        quitButton.setForeground(util.Constants.buttonText);
-        startButton.setOpaque(true);
+        quitButton.setBounds((util.Constants.PANEL_WIDTH/2) - 35, 
+        (util.Constants.PANEL_HEIGHT/2) + util.Constants.BUTTON_HEIGHT + 90, 
+        util.Constants.BUTTON_WIDTH, util.Constants.BUTTON_HEIGHT);
+        quitButton.setBackground(util.Constants.BUTTON_BACKGROUND);
+        quitButton.setForeground(util.Constants.BUTTON_TEXT);
+        quitButton.setOpaque(true);
         quitButton.setFocusable(false);
         game.getGamePanel().add(quitButton);
+
+
     }
 
     @Override
@@ -78,15 +102,16 @@ public class Menu extends State{
     public void draw(Graphics g) {
         g.setColor(Color.WHITE);
         g.setFont(util.Constants.defaultFont);
-        g.drawString("MENU", util.Constants.panelWidth/2 - 15, util.Constants.panelHeight/2);
-        g.drawImage(titleImg, (int)(util.Constants.panelWidth*.20), 0,(int) (util.Constants.panelWidth*.67), 200, null);
+        g.drawString("MENU", util.Constants.PANEL_WIDTH/2 - 15, util.Constants.PANEL_HEIGHT/2);
+        g.drawImage(titleImg, (int)(util.Constants.PANEL_WIDTH*.20), 0,(int) (util.Constants.PANEL_WIDTH*.67), 200, null);
     }
 
     public void showMenu() {
         startButton.setVisible(true);
+        controlsButton.setVisible(true);
         quitButton.setVisible(true);
 
-        GameState.state = GameState.MENU;
+        GameState.setGameStateMenu();
         game.getMusicPlayer().stop();
         game.getMusicPlayer().playMusicLoop("Title.mid");
     }
@@ -110,7 +135,7 @@ public class Menu extends State{
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_P) {
-            GameState.state = GameState.PLAY;
+            GameState.setGameStatePaused();
         }
     }
 

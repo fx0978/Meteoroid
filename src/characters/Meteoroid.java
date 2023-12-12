@@ -9,7 +9,7 @@ public class Meteoroid extends Entity {
     public Meteoroid(float x, float y, float width, float height) {
         super(x, y, width, height);
 
-        if (width > util.Constants.meteoroidSmallSize + 100) {
+        if (width > util.Constants.METEOROID_SMALL_SIZE + 100) {
             img = util.Tools.importImg("medium_meteoroid.png");
             size = 1;
         } else {

@@ -24,7 +24,7 @@ public class Bullet extends Entity {
      * @param g
      */
     public void render(Graphics g) {
-        g.drawImage(img, (int)x+util.Constants.bulletCenterToShip, (int)y, (int)width, (int)height, null);
+        g.drawImage(img, (int)x+util.Constants.BULLET_CENTER_TO_SHIP, (int)y, (int)width, (int)height, null);
         drawHitBox(g);
     }
 
@@ -40,7 +40,7 @@ public class Bullet extends Entity {
      * Overrides the updateHitBox method in entity to adjust the hitbox with the bullet as it moves
      */
     public void updateHitBox() {
-        hitBox.x = (int)(x+util.Constants.bulletCenterToShip);
+        hitBox.x = (int)(x+util.Constants.BULLET_CENTER_TO_SHIP);
         hitBox.y = (int) y;
     }
 }

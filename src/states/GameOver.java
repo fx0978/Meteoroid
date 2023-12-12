@@ -41,12 +41,12 @@ public class GameOver extends State{
                 game.getPlay().restart();
             }
         });
-        restartButton.setVisible(GameState.state == GameState.GAMEOVER);
-        restartButton.setBounds((util.Constants.panelWidth/2) - 35, 
-        (util.Constants.panelHeight/2) + point.getHeight() + 20, 
-        util.Constants.buttonWidth, util.Constants.buttonHeight);
-        restartButton.setBackground(util.Constants.buttonBackground);
-        restartButton.setForeground(util.Constants.buttonText);
+        restartButton.setVisible(GameState.getGameState() == GameState.GAMEOVER);
+        restartButton.setBounds((util.Constants.PANEL_WIDTH/2) - 35, 
+        (util.Constants.PANEL_HEIGHT/2) + point.getHeight() + 20, 
+        util.Constants.BUTTON_WIDTH, util.Constants.BUTTON_HEIGHT);
+        restartButton.setBackground(util.Constants.BUTTON_BACKGROUND);
+        restartButton.setForeground(util.Constants.BUTTON_TEXT);
         restartButton.setOpaque(true);
         restartButton.setFocusable(false);
         game.getGamePanel().add(restartButton);
@@ -61,12 +61,12 @@ public class GameOver extends State{
                 game.getMenu().showMenu();
             }
         });
-        returnButton.setVisible(GameState.state == GameState.GAMEOVER);
-        returnButton.setBounds((util.Constants.panelWidth/2) - 35, 
-        (util.Constants.panelHeight/2) + returnButton.getVerticalAlignment() + 130, 
-        util.Constants.buttonWidth, util.Constants.buttonHeight);
-        returnButton.setBackground(util.Constants.buttonBackground);
-        returnButton.setForeground(util.Constants.buttonText);
+        returnButton.setVisible(GameState.getGameState() == GameState.GAMEOVER);
+        returnButton.setBounds((util.Constants.PANEL_WIDTH/2) - 35, 
+        (util.Constants.PANEL_HEIGHT/2) + returnButton.getVerticalAlignment() + 130, 
+        util.Constants.BUTTON_WIDTH, util.Constants.BUTTON_HEIGHT);
+        returnButton.setBackground(util.Constants.BUTTON_BACKGROUND);
+        returnButton.setForeground(util.Constants.BUTTON_TEXT);
         returnButton.setOpaque(true);
         returnButton.setFocusable(false);
         game.getGamePanel().add(returnButton);
@@ -77,7 +77,7 @@ public class GameOver extends State{
      */
     @Override
     public void update() {
-        if (animationY < (util.Constants.panelHeight - gameoverImg.getHeight())/2) {
+        if (animationY < (util.Constants.PANEL_HEIGHT - gameoverImg.getHeight())/2) {
             animationY+=2;
         }
     }
@@ -86,15 +86,15 @@ public class GameOver extends State{
      * For external call to show the correct elements for the game over screen
      */
     public void showGameOver() {
-        GameState.state = GameState.GAMEOVER;
+        GameState.setGameStateGameOver();
         animationY = -gameoverImg.getHeight();
         point = game.getPlay().pointsLabel;
 
         // Readjust point to display in center
-        point.setBounds((util.Constants.panelWidth/2) - 37, (util.Constants.panelHeight/2) + 20, point.getWidth(), point.getHeight());
+        point.setBounds((util.Constants.PANEL_WIDTH/2) - 37, (util.Constants.PANEL_HEIGHT/2) + 20, point.getWidth(), point.getHeight());
 
-        restartButton.setVisible(GameState.state == GameState.GAMEOVER);
-        returnButton.setVisible(GameState.state == GameState.GAMEOVER);
+        restartButton.setVisible(GameState.getGameState() == GameState.GAMEOVER);
+        returnButton.setVisible(GameState.getGameState() == GameState.GAMEOVER);
 
         game.getMusicPlayer().stop();
         game.getMusicPlayer().playMusicLoop("GameOver.mid");
@@ -105,7 +105,7 @@ public class GameOver extends State{
      */
     @Override
     public void draw(Graphics g) {
-        g.drawImage(gameoverImg, (int)(util.Constants.panelWidth*.20), animationY,(int) (util.Constants.panelWidth*.67), (int) (.4*util.Constants.panelHeight), null);
+        g.drawImage(gameoverImg, (int)(util.Constants.PANEL_WIDTH*.20), animationY,(int) (util.Constants.PANEL_WIDTH*.67), (int) (.4*util.Constants.PANEL_HEIGHT), null);
     }
 
     @Override

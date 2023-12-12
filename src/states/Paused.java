@@ -24,12 +24,12 @@ public class Paused extends State{
             @Override
             public void actionPerformed(ActionEvent e) {
                 resumebutton.setVisible(false);
-                GameState.state = GameState.PLAY;       
+                GameState.setGameStatePlay();      
             }
         });
-        resumebutton.setBounds((util.Constants.panelWidth/2) - 35, 
-        (util.Constants.panelHeight/2) + 10, 
-        util.Constants.buttonWidth, util.Constants.buttonHeight);
+        resumebutton.setBounds((util.Constants.PANEL_WIDTH/2) - 35, 
+        (util.Constants.PANEL_HEIGHT/2) + 10, 
+        util.Constants.BUTTON_WIDTH, util.Constants.BUTTON_HEIGHT);
         resumebutton.setBackground(Color.BLACK);
         resumebutton.setForeground(Color.WHITE);
         resumebutton.setOpaque(true);
@@ -49,7 +49,7 @@ public class Paused extends State{
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.WHITE);
-        g.drawString("PAUSED", util.Constants.panelWidth/2, util.Constants.panelHeight/2);
+        g.drawString("PAUSED", util.Constants.PANEL_WIDTH/2, util.Constants.PANEL_HEIGHT/2);
     }
 
     /**
@@ -58,7 +58,7 @@ public class Paused extends State{
     public void showPaused() {
         game.getPlay().getSpaceShip().stopShip();
         resumebutton.setVisible(true);
-        GameState.state = GameState.PAUSED;
+        GameState.setGameStatePaused();
     }
 
     /**
@@ -66,7 +66,7 @@ public class Paused extends State{
      */
     public void unPauseGame() {
         resumebutton.setVisible(false);
-        GameState.state = GameState.PLAY;
+        GameState.setGameStatePlay();
     }
 
     @Override

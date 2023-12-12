@@ -54,8 +54,8 @@ public class SpaceShip extends Entity {
 
         // Check if new bullet needs to be created
         currentTime = System.currentTimeMillis();
-        if (this.attack && ((currentTime - previousTime) >= util.Constants.bulletFrequency)) {
-            bullets.add(new Bullet(this.x, this.y, util.Constants.bulletSize, util.Constants.bulletSize));
+        if (this.attack && ((currentTime - previousTime) >= util.Constants.BULLET_FREQUENCY)) {
+            bullets.add(new Bullet(this.x, this.y, util.Constants.BULLET_SIZE, util.Constants.BULLET_SIZE));
             previousTime = currentTime;
         }
     }
@@ -67,7 +67,7 @@ public class SpaceShip extends Entity {
     private Boolean isOutOfBoundsX(){
         if (this.left && x <= 0) {
             return true;
-        } else if (this.right && x + util.Constants.spaceShipSize >= util.Constants.panelWidth) {
+        } else if (this.right && x + util.Constants.SPACESHIP_SIZE >= util.Constants.PANEL_WIDTH) {
             return true;
         }
         return false;
@@ -78,9 +78,9 @@ public class SpaceShip extends Entity {
      * @return Boolean
      */
     private Boolean isOutOfBoundsY(){
-        if (this.up && y + util.Constants.spaceShipTopOffset <= 0) {
+        if (this.up && y + util.Constants.SPACESHIP_TOP_OFFSET <= 0) {
             return true;
-        } else if (this.down && y + util.Constants.spaceShipSize - util.Constants.spaceShipBottomOffset > util.Constants.panelHeight) {
+        } else if (this.down && y + util.Constants.SPACESHIP_SIZE - util.Constants.SPACESHIP_BOTTOM_OFFSET > util.Constants.PANEL_HEIGHT) {
             return true;
         }
         return false;
@@ -164,7 +164,7 @@ public class SpaceShip extends Entity {
     public void resetShip() {
         stopShip();
         bullets.removeIf(bullet -> true);
-        this.x = util.Constants.spaceShipSpawnX;
-        this.y = util.Constants.spaceShipSpawnY;
+        this.x = util.Constants.SPACESHIP_SPAWN_X;
+        this.y = util.Constants.SPACESHIP_SPAWN_Y;
     }
 }

@@ -33,12 +33,12 @@ public class Play extends State {
      * Initializes spaceship, points label, and meteoroid generation start
      */
     private void init() {
-        spaceShip = new SpaceShip(util.Constants.spaceShipSpawnX, util.Constants.spaceShipSpawnY,
-                util.Constants.spaceShipSize, util.Constants.spaceShipSize);
+        spaceShip = new SpaceShip(util.Constants.SPACESHIP_SPAWN_X, util.Constants.SPACESHIP_SPAWN_Y,
+                util.Constants.SPACESHIP_SIZE, util.Constants.SPACESHIP_SIZE);
         createMeteoroids();
 
-        pointsLabel.setBounds(10, (int) (util.Constants.panelHeight - util.Constants.pointsLabelHeight),
-                (int) (util.Constants.panelWidth), util.Constants.pointsLabelHeight);
+        pointsLabel.setBounds(10, (int) (util.Constants.PANEL_HEIGHT - util.Constants.POINTS_LABEL_HEIGHT),
+                (int) (util.Constants.PANEL_WIDTH), util.Constants.POINTS_LABEL_HEIGHT);
         pointsLabel.setVisible(false);
         pointsLabel.setForeground(Color.WHITE);
         pointsLabel.setFont(util.Constants.defaultFont);
@@ -55,7 +55,7 @@ public class Play extends State {
         // Shouldn't use the newer method random.nextInt(origin, bound) as that is only in Java 17 and older systems may not be able to run it!
         for (int numberOfMeteoroids = random.nextInt(5) + 5; numberOfMeteoroids > 0; numberOfMeteoroids--) {
             
-            meteoroidSize = random.nextInt(util.Constants.meteoroidMediumSize) + util.Constants.meteoroidSmallSize;
+            meteoroidSize = random.nextInt(util.Constants.METEOROID_MEDIUM_SIZE) + util.Constants.METEOROID_SMALL_SIZE;
 
             if ((m = createMeteoroid(meteoroids, meteoroidSize)) != null) {
                 meteoroids.add(m);
@@ -78,7 +78,7 @@ public class Play extends State {
         int retry = 300;
         do {
             colliding = false;
-            x = random.nextInt(util.Constants.panelWidth);
+            x = random.nextInt(util.Constants.PANEL_WIDTH);
             y = 0 - size;
 
             for (Meteoroid m : meteoroids) {
@@ -108,7 +108,7 @@ public class Play extends State {
      * @return
      */
     private Boolean isOutside(int x, int y, int size) {
-        return x + size > util.Constants.panelWidth || y + size > util.Constants.panelHeight;
+        return x + size > util.Constants.PANEL_WIDTH || y + size > util.Constants.PANEL_HEIGHT;
     }
 
     /**
@@ -138,7 +138,7 @@ public class Play extends State {
 
         for (Meteoroid m : meteoroids) {
             if (m.getHitBox().intersects(spaceShip.getHitBox())) {
-                GameState.state = GameState.GAMEOVER;
+                GameState.setGameStateGameOver();
                 game.getGameOver().showGameOver();
                 break;
             }
@@ -152,7 +152,7 @@ public class Play extends State {
      * @param meteoroids
      */
     private void statusCheck(List<Meteoroid> meteoroids) {
-        meteoroids.removeIf(meteoroid -> meteoroid.getY() > util.Constants.panelHeight);
+        meteoroids.removeIf(meteoroid -> meteoroid.getY() > util.Constants.PANEL_HEIGHT);
 
         // Chat GPT recommended loop for modifying object when iterating through it
         for (Meteoroid m : meteoroids) {
@@ -175,13 +175,13 @@ public class Play extends State {
      */
     public void restart() {
         // Reset game state and elements
-        pointsLabel.setBounds(10, (int) (util.Constants.panelHeight - util.Constants.pointsLabelHeight),
-                (int) (util.Constants.panelWidth), util.Constants.pointsLabelHeight);
+        pointsLabel.setBounds(10, (int) (util.Constants.PANEL_HEIGHT - util.Constants.POINTS_LABEL_HEIGHT),
+                (int) (util.Constants.PANEL_WIDTH), util.Constants.POINTS_LABEL_HEIGHT);
         points = 0;
         pointsLabel.setText("Points: 0");
         meteoroids.removeIf(m -> true);
         spaceShip.resetShip();
-        GameState.state = GameState.PLAY;
+        GameState.setGameStatePlay();
 
         // Restart music
         game.getMusicPlayer().stop();

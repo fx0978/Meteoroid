@@ -35,7 +35,7 @@ public class GamePanel extends JPanel {
 
     // Sets the size of the panel component
     private void setSize() {
-        Dimension size = new Dimension(util.Constants.panelWidth, util.Constants.panelHeight);
+        Dimension size = new Dimension(util.Constants.PANEL_WIDTH, util.Constants.PANEL_HEIGHT);
         setMinimumSize(size);
         setPreferredSize(size);
         setMaximumSize(size);

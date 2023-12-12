@@ -29,7 +29,7 @@ public class Inputs implements KeyListener, MouseListener, MouseMotionListener {
      */
     @Override
     public void keyPressed(KeyEvent e) {
-        switch(GameState.state) {
+        switch(GameState.getGameState()) {
             case MENU:
                 gamePanel.getGame().getMenu().keyPressed(e);
                 break;
@@ -39,6 +39,8 @@ public class Inputs implements KeyListener, MouseListener, MouseMotionListener {
             case GAMEOVER:
                 gamePanel.getGame().getGameOver().keyPressed(e);
                 break;
+            case INSTRUCTIONS:
+                gamePanel.getGame().geInstructions().keyPressed(e);
             default:
                 break;
         }
@@ -50,7 +52,7 @@ public class Inputs implements KeyListener, MouseListener, MouseMotionListener {
      */
     @Override
     public void keyReleased(KeyEvent e) {
-        switch(GameState.state) {
+        switch(GameState.getGameState()) {
             case MENU:
                 gamePanel.getGame().getMenu().keyReleased(e);
                 break;
@@ -62,6 +64,8 @@ public class Inputs implements KeyListener, MouseListener, MouseMotionListener {
                 break;
             case PAUSED:
                 gamePanel.getGame().getPaused().keyReleased(e);
+            case INSTRUCTIONS:
+                gamePanel.getGame().geInstructions().keyReleased(e);
             default:
                 break;
         }

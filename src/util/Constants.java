@@ -6,35 +6,35 @@ import java.awt.Font;
 public class Constants {
     
     // Panel
-    public static int panelWidth = 1600;
-    public static int panelHeight = 900;
+    public static final int PANEL_WIDTH = 1600;
+    public static final int PANEL_HEIGHT = 900;
    
     // Spaceship
-    public static int spaceShipSize = 100;     
-    public static double spaceShipTopOffset = .2*spaceShipSize;
-    public static double spaceShipBottomOffset = .05*spaceShipSize;
-    public static int spaceShipSpawnX = (panelWidth - spaceShipSize)/2;
-    public static int spaceShipSpawnY = (int)(.95*(panelHeight - spaceShipSize + spaceShipBottomOffset));
+    public static final int SPACESHIP_SIZE = 100;     
+    public static final double SPACESHIP_TOP_OFFSET = .2*SPACESHIP_SIZE;
+    public static final double SPACESHIP_BOTTOM_OFFSET = .05*SPACESHIP_SIZE;
+    public static final int SPACESHIP_SPAWN_X = (PANEL_WIDTH - SPACESHIP_SIZE)/2;
+    public static final int SPACESHIP_SPAWN_Y = (int)(.95*(PANEL_HEIGHT - SPACESHIP_SIZE + SPACESHIP_BOTTOM_OFFSET));
 
     // Bullet
-    public static int bulletSize = 32;
-    public static int bulletCenterToShip = (spaceShipSize-bulletSize)/2;
-    public static int bulletFrequency = 500;
+    public static final int BULLET_SIZE = 32;
+    public static final int BULLET_CENTER_TO_SHIP = (SPACESHIP_SIZE-BULLET_SIZE)/2;
+    public static final int BULLET_FREQUENCY = 500;
 
     // Meteoroid
-    public static int meteoroidSmallSize = 50;
-    public static int meteoroidMediumSize = 200;
+    public static final int METEOROID_SMALL_SIZE = 50;
+    public static final int METEOROID_MEDIUM_SIZE = 200;
 
-    //Labels
-    public static int pointsLabelHeight = 50;
+    // Labels
+    public static final int POINTS_LABEL_HEIGHT = 50;
 
-    //Buttons
-    public static int buttonWidth = 100;
-    public static int buttonHeight = 50;
-    public static Color buttonBackground = Color.BLACK;
-    public static Color buttonText = Color.WHITE;
+    // Buttons
+    public static final int BUTTON_WIDTH = 100;
+    public static final int BUTTON_HEIGHT = 50;
+    public static final Color BUTTON_BACKGROUND = Color.BLACK;
+    public static final Color BUTTON_TEXT = Color.WHITE;
 
-    //Font
-    public static Font defaultFont = util.Tools.getFont("src/resources/defaultFontStyle.ttf").deriveFont(30f);
+    // Font
+    public static final Font defaultFont = util.Tools.getFont("src/resources/defaultFontStyle.ttf").deriveFont(30f);
 
 }
