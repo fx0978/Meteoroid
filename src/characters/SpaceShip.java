@@ -2,7 +2,7 @@ package characters;
 
 import java.awt.Graphics;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class SpaceShip extends Entity {
     private boolean left, up, down, right, attack;
@@ -11,7 +11,7 @@ public class SpaceShip extends Entity {
     private long previousTime = currentTime;
     private int bulletFrequency = util.Constants.BULLET_DEFAULT_FREQUENCY;
 
-    private List<Bullet> bullets = new ArrayList<>();
+    private List<Bullet> bullets = new CopyOnWriteArrayList<>();
 
     public SpaceShip(float x, float y, float width, float height) {
         super(x, y, width, height);
